@@ -44,6 +44,9 @@ enum AudioTrack {
   AUDIO_FLEX_SENSOR = 10,
   AUDIO_VOLUME = 11,
   AUDIO_BRIGHTNESS = 12
+  AUDIO_MUSIC_SLOW = 13,
+  AUDIO_MUSIC_MEDIUM = 14,
+  AUDIO_MUSIC_FAST = 15,
 };
 
 //======================================================================================
@@ -750,11 +753,17 @@ class MyTrack {
       }
 
       void playTrack(AudioTrack track) {
+        if(currentTrack == track) {
+          return;
+        }
         currentTrack = track;
         dfPlayer.play(track);
       }
 
       void loopTrack(AudioTrack track) {
+        if(currentTrack == track) {
+          return;
+        }
         currentTrack = track;
         dfPlayer.loop(track);
       }
@@ -777,6 +786,9 @@ class MyTrack {
       }
       void playMenuOption(AudioTrack track) {
         playTrack(track);
+      }
+      bool isTrackPlaying(AudioTrack track) {
+        return currentTrack == track;
       }
 }
   
