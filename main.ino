@@ -2,6 +2,7 @@
 #include <TMCStepper.h>
 #include <AccelStepper.h>
 #include <FastLED.h>
+#include <DFRobotDFPlayerMini.h>
 
 //======================================================================================
 // ENUMS FOR READABILITY
@@ -66,6 +67,10 @@ enum TrackError {
 
 // LED Strip
 #define DATA_PIN 27
+
+// DFMiniplayer 
+#define DF_RX 15
+#define DF_TX 14
 
 //======================================================================================
 // CONFIGURATION CONSTANTS
@@ -792,6 +797,7 @@ MyLED led2(LED2);
 MyLightstrip lightStrip(DATA_PIN, NUM_LEDS);
 MyPressureplate pressurePlate1(PRES1);
 MyPressureplate pressurePlate2(PRES2);
+DFRobotDFPlayerMini dfPlayer;
 
 // Note: no stallPin argument — stall is detected via UART SG_RESULT
 MyTrack track1(ENBL_PIN1, STEP_PIN1, DIR_PIN1, &Serial1, TRK1_LS1, TRK1_LS2);
