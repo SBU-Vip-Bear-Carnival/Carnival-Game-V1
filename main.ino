@@ -721,19 +721,31 @@ class MyTrack {
 
   class MyAudioSystem {
     private:
-
       DFRobotDFPlayerMini dfPlayer;
       uint8_t currentTrack;
       uint8_t currentVolume;
 
 
     public: 
-
       MyAudioSystem() {
         Serial3.begin(9600);
         dfPlayer.volume(20);
       }
 
+      void playTrack(uint8_t track) {
+      }
+
+      void loopTrack(uint8_t track) {
+      }
+
+      void stop() {
+      }
+
+      void setVolume(uint8_t volume) {
+      }
+
+      uint8_t getCurrentTrack() {
+      }
 }
   
 //======================================================================================
