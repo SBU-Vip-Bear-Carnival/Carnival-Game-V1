@@ -29,6 +29,22 @@ enum TrackError {
   LIMIT_HIT = 2,
   BUSY = 3
 };
+enum AudioTrack {
+
+  AUDIO_NONE = 0,
+  AUDIO_MENU_OPTIONS = 1,
+  AUDIO_GAME_MODE = 2,
+  AUDIO_SINGLEPLAYER = 3,
+  AUDIO_MULTIPLAYER = 4,
+  AUDIO_EASY = 5,
+  AUDIO_MEDIUM = 6,
+  AUDIO_HARD = 7,
+  AUDIO_CALIBRATION = 8,
+  AUDIO_PRESSURE_PLATE = 9,
+  AUDIO_FLEX_SENSOR = 10,
+  AUDIO_VOLUME = 11,
+  AUDIO_BRIGHTNESS = 12
+};
 
 //======================================================================================
 // PIN DEFINITIONS
@@ -722,8 +738,8 @@ class MyTrack {
   class MyAudioSystem {
     private:
       DFRobotDFPlayerMini dfPlayer;
-      uint8_t currentTrack;
-      uint8_t currentVolume;
+      AudioTrack currentTrack;
+      AudioTrack currentVolume;
 
 
     public: 
@@ -733,18 +749,18 @@ class MyTrack {
         currentTrack = 0;
       }
 
-      void playTrack(uint8_t track) {
+      void playTrack(AudioTrack track) {
         currentTrack = track;
         dfPlayer.play(track);
       }
 
-      void loopTrack(uint8_t track) {
+      void loopTrack(AudioTrack track) {
         currentTrack = track;
         dfPlayer.loop(track);
       }
 
       void stop() {
-        currentTrack = 0;
+        currentTrack = AUDIO_NONE;
         dfPlayer.stop()
       }
 
@@ -753,11 +769,14 @@ class MyTrack {
         dfPlayer.volume(volume);
       }
 
-      uint8_t getCurrentTrack() {
+      AudioTrack getCurrentTrack() {
         return currentTrack;
       }
-      uint8_t getCurrentVolume() {
+      AudioTrack getCurrentVolume() {
         return currentVolume;
+      }
+      void playMenuOption(AudioTrack track) {
+        playTrack(track);
       }
 }
   
