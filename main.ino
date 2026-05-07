@@ -730,21 +730,34 @@ class MyTrack {
       MyAudioSystem() {
         Serial3.begin(9600);
         dfPlayer.volume(20);
+        currentTrack = 0;
       }
 
       void playTrack(uint8_t track) {
+        currentTrack = track;
+        dfPlayer.play(track);
       }
 
       void loopTrack(uint8_t track) {
+        currentTrack = track;
+        dfPlayer.loop(track);
       }
 
       void stop() {
+        currentTrack = 0;
+        dfPlayer.stop()
       }
 
       void setVolume(uint8_t volume) {
+        currentVolume = volume;
+        dfPlayer.volume(volume);
       }
 
       uint8_t getCurrentTrack() {
+        return currentTrack;
+      }
+      uint8_t getCurrentVolume() {
+        return currentVolume;
       }
 }
   
