@@ -719,6 +719,23 @@ class MyTrack {
     }
 };
 
+  class MyAudioSystem {
+    private:
+
+      DFRobotDFPlayerMini dfPlayer;
+      uint8_t currentTrack;
+      uint8_t currentVolume;
+
+
+    public: 
+
+      MyAudioSystem() {
+        Serial3.begin(9600);
+        dfPlayer.volume(20);
+      }
+
+}
+  
 //======================================================================================
 // MODE STATE STRUCTS
 //======================================================================================
@@ -797,7 +814,7 @@ MyLED led2(LED2);
 MyLightstrip lightStrip(DATA_PIN, NUM_LEDS);
 MyPressureplate pressurePlate1(PRES1);
 MyPressureplate pressurePlate2(PRES2);
-DFRobotDFPlayerMini dfPlayer;
+MyAudioSystem audioSystem;
 
 // Note: no stallPin argument — stall is detected via UART SG_RESULT
 MyTrack track1(ENBL_PIN1, STEP_PIN1, DIR_PIN1, &Serial1, TRK1_LS1, TRK1_LS2);
